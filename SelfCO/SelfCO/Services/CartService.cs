@@ -31,7 +31,7 @@ namespace SelfCheckoutSystem.Services
         public void AddToCart(int productId, int quantity = 1)
         {
             var product = _context.Products.Find(productId);
-            if (product == null || !product.IsActive || product.Stock < quantity)
+            if (product == null || !product.IsActive )
                 return;
 
             var cart = GetCart();
@@ -47,7 +47,7 @@ namespace SelfCheckoutSystem.Services
                 {
                     ProductId = product.ProductId,
                     ProductName = product.Name,
-                    Barcode = product.Code,
+                    Code = product.Code,
                     Price = product.Price,
                     Quantity = quantity
                 });

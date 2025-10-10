@@ -1,50 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Title"] = "Staff Dashboard";
 }
 
 <div class="container mt-4">
-    <h2>Admin Dashboard</h2>
+    <h2>Staff Dashboard</h2>
     <hr />
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Today's Sales</h5>
-                    <h3>$@ViewBag.TodaySales.ToString("F2")</h3>
+    <div class="row mt-4">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-search display-4 text-primary"></i>
+                    <h5 class="card-title mt-3">Search Tickets</h5>
+                    <p class="card-text">Find and view ticket details by ID</p>
+                    <a asp-action="SearchTicket" class="btn btn-primary">
+                        <i class="bi bi-search"></i> Search Tickets
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Today's Orders</h5>
-                    <h3>@ViewBag.TodayOrders</h3>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-box-seam display-4 text-success"></i>
+                    <h5 class="card-title mt-3">Product Management</h5>
+                    <p class="card-text">Add, edit, or remove products</p>
+                    <a asp-action="Products" class="btn btn-success">
+                        <i class="bi bi-box"></i> Manage Products
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-up display-4 text-info"></i>
+                    <h5 class="card-title mt-3">Sales Reports</h5>
+                    <p class="card-text">View daily and monthly reports</p>
+                    <a asp-action="Reports" class="btn btn-info">
+                        <i class="bi bi-file-earmark-bar-graph"></i> View Reports
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <a asp-action="Orders" class="btn btn-lg btn-outline-primary w-100 mb-3">
-                <i class="bi bi-receipt"></i><br />View Orders
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a asp-action="Products" class="btn btn-lg btn-outline-success w-100 mb-3">
-                <i class="bi bi-box"></i><br />Manage Products
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a asp-action="Categories" class="btn btn-lg btn-outline-warning w-100 mb-3">
-                <i class="bi bi-tags"></i><br />Categories
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a asp-action="Reports" class="btn btn-lg btn-outline-info w-100 mb-3">
-                <i class="bi bi-graph-up"></i><br />Reports
-            </a>
-        </div>
+    <div class="text-center mt-4">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Home
+        </a>
     </div>
 </div>

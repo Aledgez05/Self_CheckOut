@@ -10,54 +10,92 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
-                    <h5>Select Payment Method</h5>
-                    <form asp-action="ProcessPayment" method="post">
-                        <div class="mb-3">
-                            <label class="form-label">Payment Method</label>
+                    <h5 class="mb-4">Select Payment Method</h5>
+                    <form asp-action="ProcessPayment" method="post" id="paymentForm">
+                        
+                        <div class="mb-4">
                             @foreach (var method in Model.AvailablePaymentMethods)
                             {
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" 
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input payment-radio" type="radio" 
                                            name="PaymentMethod" value="@method" 
-                                           id="payment_@method" required />
-                                    <label class="form-check-label" for="payment_@method">
-                                        @method
+                                           id="payment_@method" required 
+                                           onchange="toggleCashFields()" />
+                                    <label class="form-check-label h5" for="payment_@method">
+                                        <i class="bi bi-@(method == "Cash" ? "cash" : "credit-card")"></i> @method
                                     </label>
                                 </div>
                             }
                             <span asp-validation-for="PaymentMethod" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Email (optional for receipt)</label>
-                            <input asp-for="Email" class="form-control" placeholder="your@email.com" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                        <!-- Cash Payment Fields -->
+                        <div id="cashFields" style="display: none;">
+                            <div class="alert alert-warning">
+                                <strong>Total to pay: $@Model.Cart.TotalAmount.ToString("F2")</strong>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label h6">Amount Received</label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" step="0.01" name="AmountReceived" 
+                                           class="form-control" id="amountReceived" 
+                                           placeholder="0.00" onkeyup="calculateChange()" />
+                                </div>
+                                <span asp-validation-for="AmountReceived" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label h6">Change to Return</label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" class="form-control" id="changeDisplay" 
+                                           readonly style="background-color: #e9ecef; font-weight: bold;" />
+                                </div>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success btn-lg w-100">
-                            Complete Payment - $@Model.Cart.TotalAmount.ToString("F2")
+                        <!-- Card Payment Message -->
+                        <div id="cardMessage" style="display: none;">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle"></i> Card payment will be simulated. Click "Complete Payment" to proceed.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg w-100 mt-3" id="submitBtn" disabled>
+                            <i class="bi bi-check-circle"></i> Complete Payment - $@Model.Cart.TotalAmount.ToString("F2")
                         </button>
+
+                        <a asp-action="Scan" class="btn btn-outline-secondary w-100 mt-2">
+                            <i class="bi bi-arrow-left"></i> Back to Scanning
+                        </a>
                     </form>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
                     <h5>Order Summary</h5>
                     <hr />
+                    <p><strong>Total Items:</strong> @Model.Cart.TotalItems</p>
+                    <hr />
                     @foreach (var item in Model.Cart.Items)
                     {
-                        <p class="mb-1">
-                            @item.ProductName x @item.Quantity
-                            <span class="float-end">$@item.Subtotal.ToString("F2")</span>
-                        </p>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>@item.ProductName x @item.Quantity</span>
+                            <span>$@item.Subtotal.ToString("F2")</span>
+                        </div>
                     }
                     <hr />
-                    <h4>Total: $@Model.Cart.TotalAmount.ToString("F2")</h4>
+                    <div class="d-flex justify-content-between">
+                        <h4>Total:</h4>
+                        <h4 class="text-success">$@Model.Cart.TotalAmount.ToString("F2")</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,5 +103,39 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<script>
+    const totalAmount = @Model.Cart.TotalAmount;
+
+    function toggleCashFields() {
+        const selectedMethod = document.querySelector('input[name="PaymentMethod"]:checked')?.value;
+        const cashFields = document.getElementById('cashFields');
+        const cardMessage = document.getElementById('cardMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (selectedMethod === 'Cash') {
+            cashFields.style.display = 'block';
+            cardMessage.style.display = 'none';
+            submitBtn.disabled = true;
+        } else if (selectedMethod === 'Card') {
+            cashFields.style.display = 'none';
+            cardMessage.style.display = 'block';
+            submitBtn.disabled = false;
+        }
+    }
+
+    function calculateChange() {
+        const amountReceived = parseFloat(document.getElementById('amountReceived').value) || 0;
+        const change = amountReceived - totalAmount;
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (change >= 0) {
+            document.getElementById('changeDisplay').value = change.toFixed(2);
+            submitBtn.disabled = false;
+        } else {
+            document.getElementById('changeDisplay').value = 'Insufficient';
+            submitBtn.disabled = true;
+        }
+    }
+</script>
+<partial name="_ValidationScriptsPartial" />
 }

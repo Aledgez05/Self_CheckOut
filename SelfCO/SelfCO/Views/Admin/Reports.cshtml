@@ -1,0 +1,180 @@
+﻿@model SelfCheckoutSystem.ViewModels.ReportViewModel
+
+@{
+    ViewData["Title"] = "Sales Reports";
+}
+
+<div class="container mt-4">
+    <h2>Sales Reports</h2>
+    <hr />
+
+    <!-- Report Type Selection -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form asp-action="Reports" method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Report Type</label>
+                    <select name="reportType" class="form-select" onchange="this.form.submit()">
+                        <option value="Daily" selected="@(Model.ReportType == "Daily")">Daily</option>
+                        <option value="Monthly" selected="@(Model.ReportType == "Monthly")">Monthly</option>
+                    </select>
+                </div>
+                
+                @if (Model.ReportType == "Daily")
+                {
+                    <div class="col-md-4">
+                        <label class="form-label">Date</label>
+                        <input type="date" name="startDate" class="form-control" 
+                               value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-4">
+                        <label class="form-label">Start Date</label>
+                        <input type="date" name="startDate" class="form-control" 
+                               value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">End Date</label>
+                        <input type="date" name="endDate" class="form-control" 
+                               value="@Model.EndDate.ToString("yyyy-MM-dd")" />
+                    </div>
+                }
+                
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-search"></i> Generate Report
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Total Sales</h5>
+                    <h2 class="mb-0">$@Model.TotalSales.ToString("F2")</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Total Orders</h5>
+                    <h2 class="mb-0">@Model.TotalOrders</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales by Payment Method -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Sales by Payment Method</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Payment Method</th>
+                        <th class="text-end">Total Sales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var payment in Model.SalesByPaymentMethod)
+                    {
+                        <tr>
+                            <td><i class="bi bi-@(payment.Key == "Cash" ? "cash" : "credit-card")"></i> @payment.Key</td>
+                            <td class="text-end"><strong>$@payment.Value.ToString("F2")</strong></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Top 10 Products -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-warning">
+            <h5 class="mb-0">Top 10 Products</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th class="text-center">Units Sold</th>
+                        <th class="text-end">Total Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int rank = 1; }
+                    @foreach (var product in Model.TopProducts)
+                    {
+                        <tr>
+                            <td><strong>@rank</strong></td>
+                            <td>@product.ProductName</td>
+                            <td class="text-center">@product.QuantitySold</td>
+                            <td class="text-end"><strong>$@product.TotalRevenue.ToString("F2")</strong></td>
+                        </tr>
+                        rank++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Top 3 Categories -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Top 3 Categories</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th class="text-center">Units Sold</th>
+                        <th class="text-end">Total Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int catRank = 1; }
+                    @foreach (var category in Model.TopCategories)
+                    {
+                        <tr>
+                            <td><strong>@catRank</strong></td>
+                            <td>@category.CategoryName</td>
+                            <td class="text-center">@category.QuantitySold</td>
+                            <td class="text-end"><strong>$@category.TotalRevenue.ToString("F2")</strong></td>
+                        </tr>
+                        catRank++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="text-center mb-4">
+        <button onclick="window.print()" class="btn btn-outline-secondary">
+            <i class="bi bi-printer"></i> Print Report
+        </button>
+        <a asp-action="Dashboard" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>
+
+@section Styles {
+<style>
+    @@media print {
+        .btn, nav, footer, form { display: none !important; }
+    }
+</style>
+}

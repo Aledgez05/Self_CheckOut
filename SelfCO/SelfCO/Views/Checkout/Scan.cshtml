@@ -5,49 +5,109 @@
 }
 
 <div class="container mt-4">
-    <h2>Scan Products</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Scan Your Products</h2>
+        <form asp-action="CancelOrder" method="post" class="d-inline">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Cancel this order?')">
+                <i class="bi bi-x-circle"></i> Cancel Order
+            </button>
+        </form>
+    </div>
     <hr />
 
     <div class="row">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
-                    <h5 class="card-title">Enter Barcode</h5>
+                    <h5 class="card-title mb-4">Enter Product Code</h5>
                     <form id="scanForm">
-                        <div class="input-group input-group-lg">
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
                             <input type="text" id="barcodeInput" class="form-control" 
                                    placeholder="Scan or type barcode..." autofocus />
-                            <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-upc-scan"></i> Add
-                            </button>
+                            <button type="submit" class="btn btn-primary px-4">Add to Cart</button>
                         </div>
                     </form>
                     
-                    <div id="scanMessage" class="mt-3"></div>
+                    <div id="scanMessage"></div>
                     
-                    <!-- test barcodes -->
-                    <div class="mt-3">
-                        <p class="text-muted small">Test barcodes: 
-                            <button class="btn btn-sm btn-outline-secondary" onclick="scanBarcode('123456789')">123456789</button>
-                            <button class="btn btn-sm btn-outline-secondary" onclick="scanBarcode('987654321')">987654321</button>
-                            <button class="btn btn-sm btn-outline-secondary" onclick="scanBarcode('456789123')">456789123</button>
-                        </p>
+                    <div class="alert alert-info mt-3">
+                        <strong>Tip:</strong> Focus the input field and scan your product barcode
                     </div>
                 </div>
             </div>
+
+            @if (Model.Items.Any())
+            {
+                <div class="card shadow mt-3">
+                    <div class="card-body">
+                        <h5>Current Items</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Subtotal</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Items)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <strong>@item.ProductName</strong><br />
+                                                <small class="text-muted">@item.Brand</small>
+                                            </td>
+                                            <td>$@item.Price.ToString("F2")</td>
+                                            <td>@item.Quantity</td>
+                                            <td>$@item.Subtotal.ToString("F2")</td>
+                                            <td>
+                                                <form asp-action="RemoveItem" method="post" class="d-inline">
+                                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
 
-        <!-- Cart Preview -->
         <div class="col-md-4">
-            <div class="card">
+            <div class="card shadow bg-light">
                 <div class="card-body">
                     <h5 class="card-title">Cart Summary</h5>
-                    <p><strong>Items:</strong> <span id="cartItems">@Model.TotalItems</span></p>
-                    <p><strong>Total:</strong> $<span id="cartTotal">@Model.TotalAmount.ToString("F2")</span></p>
                     <hr />
-                    <a asp-action="Cart" class="btn btn-success btn-block w-100">
-                        <i class="bi bi-cart"></i> View Cart & Checkout
-                    </a>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Total Items:</span>
+                        <strong id="cartItems">@Model.TotalItems</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="h5">Total:</span>
+                        <strong class="h5 text-success">$<span id="cartTotal">@Model.TotalAmount.ToString("F2")</span></strong>
+                    </div>
+                    <hr />
+                    @if (Model.Items.Any())
+                    {
+                        <a asp-action="Cart" class="btn btn-success btn-lg w-100 mb-2">
+                            <i class="bi bi-credit-card"></i> Proceed to Payment
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary btn-lg w-100" disabled>
+                            Cart is Empty
+                        </button>
+                    }
                 </div>
             </div>
         </div>
@@ -58,30 +118,34 @@
 <script>
     document.getElementById('scanForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        var barcode = document.getElementById('barcodeInput').value;
-        scanBarcode(barcode);
+        var barcode = document.getElementById('barcodeInput').value.trim();
+        if (barcode) {
+            scanBarcode(barcode);
+        }
     });
 
     function scanBarcode(barcode) {
-        document.getElementById('barcodeInput').value = barcode;
-        
         fetch('@Url.Action("ScanBarcode", "Checkout")', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: 'barcode=' + encodeURIComponent(barcode)
         })
         .then(response => response.json())
         .then(data => {
             var messageDiv = document.getElementById('scanMessage');
             if (data.success) {
-                messageDiv.innerHTML = '<div class="alert alert-success">' + data.message + ' - $' + data.product.price + '</div>';
+                messageDiv.innerHTML = '<div class="alert alert-success alert-dismissible fade show">' +
+                    '<strong>✓ Added!</strong> ' + data.product.name + ' - $' + data.product.price +
+                    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
                 document.getElementById('barcodeInput').value = '';
-                location.reload(); // Refresh to update cart
+                setTimeout(() => location.reload(), 800);
             } else {
-                messageDiv.innerHTML = '<div class="alert alert-danger">' + data.message + '</div>';
+                messageDiv.innerHTML = '<div class="alert alert-danger alert-dismissible fade show">' +
+                    '<strong>✗ Error!</strong> ' + data.message +
+                    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+                document.getElementById('barcodeInput').value = '';
             }
+            document.getElementById('barcodeInput').focus();
         });
     }
 </script>

@@ -29,12 +29,6 @@ namespace SelfCheckoutSystem.Data
                 .HasIndex(p => p.Code)
                 .IsUnique();
 
-            // relationships
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.Payment)
-                .WithOne(p => p.Order)
-                .HasForeignKey<Payment>(p => p.OrderId);
-
             // Seed data
             SeedData(modelBuilder);
         }
@@ -73,9 +67,9 @@ namespace SelfCheckoutSystem.Data
                     ProductId = 1,
                     Code = "123456789",
                     Name = "Coca Cola 500ml",
+                    Brand = "Colgate",
                     Description = "Refreshing cola drink", 
                     Price = 1.99m,
-                    Stock = 100,
                     CategoryId = 1,
                     IsActive = true,
                     CreatedAt = new DateTime(2024, 1, 1) 
@@ -85,9 +79,9 @@ namespace SelfCheckoutSystem.Data
                     ProductId = 2,
                     Code = "987654321",
                     Name = "Lays Chips",
+                    Brand = "Colgate",
                     Description = "Classic potato chips", 
                     Price = 2.49m,
-                    Stock = 50,
                     CategoryId = 2,
                     IsActive = true,
                     CreatedAt = new DateTime(2024, 1, 1)  
@@ -97,9 +91,9 @@ namespace SelfCheckoutSystem.Data
                     ProductId = 3,
                     Code = "456789123",
                     Name = "Milk 1L",
+                    Brand = "Colgate",
                     Description = "Fresh whole milk",  
                     Price = 3.99m,
-                    Stock = 30,
                     CategoryId = 3,
                     IsActive = true,
                     CreatedAt = new DateTime(2024, 1, 1)  

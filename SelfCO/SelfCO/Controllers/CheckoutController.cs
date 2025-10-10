@@ -33,13 +33,11 @@ namespace SelfCheckoutSystem.Controllers
                 return Json(new { success = false, message = "Invalid barcode" });
 
             var product = _context.Products
+                .Include(p => p.Category)
                 .FirstOrDefault(p => p.Code == barcode && p.IsActive);
 
             if (product == null)
                 return Json(new { success = false, message = "Product not found" });
-
-            if (product.Stock <= 0)
-                return Json(new { success = false, message = "Product out of stock" });
 
             _cartService.AddToCart(product.ProductId);
 
@@ -50,6 +48,7 @@ namespace SelfCheckoutSystem.Controllers
                 product = new
                 {
                     name = product.Name,
+                    brand = product.Brand,
                     price = product.Price
                 }
             });
@@ -59,15 +58,11 @@ namespace SelfCheckoutSystem.Controllers
         public IActionResult Cart()
         {
             var cart = _cartService.GetCart();
+            if (!cart.Items.Any())
+            {
+                return RedirectToAction(nameof(Scan));
+            }
             return View(cart);
-        }
-
-        // POST: Checkout/UpdateCart
-        [HttpPost]
-        public IActionResult UpdateCart(int productId, int quantity)
-        {
-            _cartService.UpdateQuantity(productId, quantity);
-            return RedirectToAction(nameof(Cart));
         }
 
         // POST: Checkout/RemoveItem
@@ -76,6 +71,14 @@ namespace SelfCheckoutSystem.Controllers
         {
             _cartService.RemoveFromCart(productId);
             return RedirectToAction(nameof(Cart));
+        }
+
+        // POST: Checkout/CancelOrder
+        [HttpPost]
+        public IActionResult CancelOrder()
+        {
+            _cartService.ClearCart();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Checkout/Payment
@@ -95,21 +98,39 @@ namespace SelfCheckoutSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ProcessPayment(CheckoutViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View("Payment", model);
-
             var cart = _cartService.GetCart();
 
             if (!cart.Items.Any())
                 return RedirectToAction(nameof(Scan));
+
+            // Validate cash payment
+            if (model.PaymentMethod == "Cash")
+            {
+                if (!model.AmountReceived.HasValue || model.AmountReceived < cart.TotalAmount)
+                {
+                    ModelState.AddModelError("AmountReceived", "Amount received must be greater than or equal to total");
+                    model.Cart = cart;
+                    return View("Payment", model);
+                }
+                model.ChangeGiven = model.AmountReceived.Value - cart.TotalAmount;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Cart = cart;
+                return View("Payment", model);
+            }
 
             // Create order
             var order = new Order
             {
                 OrderDate = DateTime.Now,
                 TotalAmount = (int)cart.TotalAmount,
+                TotalItems = cart.TotalItems,
                 PaymentMethod = model.PaymentMethod,
-                Status = "Completed"
+                Status = "Completed",
+                AmountReceived = model.AmountReceived,
+                ChangeGiven = model.ChangeGiven
             };
 
             _context.Orders.Add(order);
@@ -126,40 +147,23 @@ namespace SelfCheckoutSystem.Controllers
                     UnitPrice = item.Price
                 };
                 _context.OrderItems.Add(orderItem);
-
-                // Update stock
-                var product = _context.Products.Find(item.ProductId);
-                if (product != null)
-                    product.Stock -= item.Quantity;
             }
-
-            // Create payment record
-            var payment = new Payment
-            {
-                OrderId = order.OrderId,
-                Amount = cart.TotalAmount,
-                Method = model.PaymentMethod,
-                TransactionId = Guid.NewGuid().ToString("N").Substring(0, 16).ToUpper(),
-                PaymentDate = DateTime.Now,
-                IsSuccessful = true
-            };
-            _context.Payments.Add(payment);
 
             _context.SaveChanges();
 
             // Clear cart
             _cartService.ClearCart();
 
-            return RedirectToAction(nameof(Confirmation), new { id = order.OrderId });
+            return RedirectToAction(nameof(Receipt), new { id = order.OrderId });
         }
 
-        // GET: Checkout/Confirmation
-        public IActionResult Confirmation(int id)
+        // GET: Checkout/Receipt
+        public IActionResult Receipt(int id)
         {
             var order = _context.Orders
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
-                .Include(o => o.Payment)
+                        .ThenInclude(p => p.Category)
                 .FirstOrDefault(o => o.OrderId == id);
 
             if (order == null)

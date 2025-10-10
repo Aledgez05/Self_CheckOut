@@ -9,15 +9,16 @@ namespace SelfCheckoutSystem.ViewModels
         [Required(ErrorMessage = "Please select a payment method")]
         public string PaymentMethod { get; set; }
 
-        [EmailAddress]
-        public string Email { get; set; } // Optional for receipt
+        // For cash payments
+        [Range(0, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
+        public decimal? AmountReceived { get; set; }
+
+        public decimal? ChangeGiven { get; set; }
 
         public List<string> AvailablePaymentMethods { get; set; } = new()
         {
             "Cash",
-            "Credit Card",
-            "Debit Card",
-            "Mobile Payment"
+            "Card"
         };
     }
 }

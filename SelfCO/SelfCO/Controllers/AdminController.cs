@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SelfCheckoutSystem.Data;
 using SelfCheckoutSystem.Models;
+using SelfCheckoutSystem.ViewModels;
 
 namespace SelfCheckoutSystem.Controllers
 {
@@ -17,60 +18,47 @@ namespace SelfCheckoutSystem.Controllers
         // Dashboard
         public IActionResult Dashboard()
         {
-            var todaySales = _context.Orders
-                .Where(o => o.OrderDate.Date == DateTime.Today)
-                .Sum(o => o.TotalAmount);
-
-            var todayOrders = _context.Orders
-                .Count(o => o.OrderDate.Date == DateTime.Today);
-
-            ViewBag.TodaySales = todaySales;
-            ViewBag.TodayOrders = todayOrders;
-
             return View();
         }
 
-        // Orders
-        public IActionResult Orders()
+        // Search Ticket
+        public IActionResult SearchTicket()
         {
-            var orders = _context.Orders
-                .Include(o => o.User)
-                .Include(o => o.Payment)
-                .OrderByDescending(o => o.OrderDate)
-                .ToList();
-
-            return View(orders);
+            return View();
         }
 
-        // Order Details
-        public IActionResult OrderDetails(int id)
+        [HttpPost]
+        public IActionResult SearchTicket(int ticketId)
         {
             var order = _context.Orders
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
-                .Include(o => o.Payment)
-                .FirstOrDefault(o => o.OrderId == id);
+                        .ThenInclude(p => p.Category)
+                .FirstOrDefault(o => o.OrderId == ticketId);
 
             if (order == null)
-                return NotFound();
+            {
+                ViewBag.Error = "Ticket not found";
+                return View();
+            }
 
-            return View(order);
+            return View("TicketDetails", order);
         }
 
-        // Products
+        // Products Management
         public IActionResult Products()
         {
             var products = _context.Products
                 .Include(p => p.Category)
+                .Where(p => p.IsActive)
                 .ToList();
 
             return View(products);
         }
 
-        // Create Product
         public IActionResult CreateProduct()
         {
-            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.Categories = _context.Categories.Where(c => c.IsActive).ToList();
             return View();
         }
 
@@ -85,37 +73,10 @@ namespace SelfCheckoutSystem.Controllers
                 return RedirectToAction(nameof(Products));
             }
 
-            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.Categories = _context.Categories.Where(c => c.IsActive).ToList();
             return View(product);
         }
 
-        // Edit Product
-        public IActionResult EditProduct(int id)
-        {
-            var product = _context.Products.Find(id);
-            if (product == null)
-                return NotFound();
-
-            ViewBag.Categories = _context.Categories.ToList();
-            return View(product);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult EditProduct(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Products.Update(product);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Products));
-            }
-
-            ViewBag.Categories = _context.Categories.ToList();
-            return View(product);
-        }
-
-        // Delete Product
         [HttpPost]
         public IActionResult DeleteProduct(int id)
         {
@@ -129,50 +90,74 @@ namespace SelfCheckoutSystem.Controllers
             return RedirectToAction(nameof(Products));
         }
 
-        // Categories
-        public IActionResult Categories()
-        {
-            var categories = _context.Categories.ToList();
-            return View(categories);
-        }
-
         // Reports
-        public IActionResult Reports(DateTime? startDate, DateTime? endDate)
+        public IActionResult Reports(string reportType = "Daily", DateTime? startDate = null, DateTime? endDate = null)
         {
-            startDate ??= DateTime.Today.AddDays(-30);
-            endDate ??= DateTime.Today;
+            if (reportType == "Daily")
+            {
+                startDate = startDate ?? DateTime.Today;
+                endDate = startDate;
+            }
+            else // Monthly
+            {
+                if (!startDate.HasValue)
+                {
+                    startDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                    endDate = startDate.Value.AddMonths(1).AddDays(-1);
+                }
+            }
 
             var orders = _context.Orders
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
                         .ThenInclude(p => p.Category)
-                .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate)
+                .Where(o => o.OrderDate.Date >= startDate && o.OrderDate.Date <= endDate
+                            && o.Status == "Completed")
                 .ToList();
 
-            var totalSales = orders.Sum(o => o.TotalAmount);
-            var totalOrders = orders.Count;
+            var viewModel = new ReportViewModel
+            {
+                StartDate = startDate.Value,
+                EndDate = endDate.Value,
+                ReportType = reportType,
+                TotalSales = orders.Sum(o => o.TotalAmount),
+                TotalOrders = orders.Count,
 
-            var topProducts = orders
-                .SelectMany(o => o.OrderItems)
-                .GroupBy(oi => oi.Product.Name)
-                .Select(g => new { ProductName = g.Key, Quantity = g.Sum(oi => oi.Quantity) })
-                .OrderByDescending(x => x.Quantity)
-                .Take(5)
-                .ToList();
+                // Sales by payment method
+                SalesByPaymentMethod = orders
+                    .GroupBy(o => o.PaymentMethod)
+                    .ToDictionary(g => g.Key, g => (decimal)g.Sum(o => o.TotalAmount)),
 
-            var paymentMethods = orders
-                .GroupBy(o => o.PaymentMethod)
-                .Select(g => new { Method = g.Key, Count = g.Count() })
-                .ToList();
+                // Top 10 products
+                TopProducts = orders
+                    .SelectMany(o => o.OrderItems)
+                    .GroupBy(oi => new { oi.Product.ProductId, oi.Product.Name })
+                    .Select(g => new TopProductViewModel
+                    {
+                        ProductName = g.Key.Name,
+                        QuantitySold = g.Sum(oi => oi.Quantity),
+                        TotalRevenue = g.Sum(oi => oi.Subtotal)
+                    })
+                    .OrderByDescending(x => x.QuantitySold)
+                    .Take(10)
+                    .ToList(),
 
-            ViewBag.StartDate = startDate;
-            ViewBag.EndDate = endDate;
-            ViewBag.TotalSales = totalSales;
-            ViewBag.TotalOrders = totalOrders;
-            ViewBag.TopProducts = topProducts;
-            ViewBag.PaymentMethods = paymentMethods;
+                // Top 3 categories
+                TopCategories = orders
+                    .SelectMany(o => o.OrderItems)
+                    .GroupBy(oi => oi.Product.Category.Name)
+                    .Select(g => new TopCategoryViewModel
+                    {
+                        CategoryName = g.Key,
+                        QuantitySold = g.Sum(oi => oi.Quantity),
+                        TotalRevenue = g.Sum(oi => oi.Subtotal)
+                    })
+                    .OrderByDescending(x => x.QuantitySold)
+                    .Take(3)
+                    .ToList()
+            };
 
-            return View(orders);
+            return View(viewModel);
         }
     }
 }

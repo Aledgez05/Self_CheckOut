@@ -1,0 +1,79 @@
+﻿@model SelfCheckoutSystem.Models.Order
+
+@{
+    ViewData["Title"] = "Ticket Details";
+}
+
+<div class="container mt-4">
+    <h2>Ticket Details</h2>
+    <hr />
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <h4>Ticket #@Model.OrderId</h4>
+                        <p class="text-muted">@Model.OrderDate.ToString("dd/MM/yyyy HH:mm:ss")</p>
+                        <span class="badge bg-@(Model.Status == "Completed" ? "success" : "secondary") fs-6">
+                            @Model.Status
+                        </span>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Product.Name<br />
+                                        <small class="text-muted">@item.Product.Brand</small>
+                                    </td>
+                                    <td>@item.Quantity</td>
+                                    <td>$@item.UnitPrice.ToString("F2")</td>
+                                    <td>$@item.Subtotal.ToString("F2")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-6">
+                            <p><strong>Total Items:</strong> @Model.TotalItems</p>
+                            <p><strong>Payment Method:</strong> @Model.PaymentMethod</p>
+                            @if (Model.PaymentMethod == "Cash")
+                            {
+                                <p><strong>Amount Received:</strong> $@Model.AmountReceived?.ToString("F2")</p>
+                                <p><strong>Change Given:</strong> $@Model.ChangeGiven?.ToString("F2")</p>
+                            }
+                        </div>
+                        <div class="col-6 text-end">
+                            <h4>Total: <span class="text-success">$@Model.TotalAmount.ToString("F2")</span></h4>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="text-center">
+                        <a asp-action="SearchTicket" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Search Another Ticket
+                        </a>
+                        <a asp-action="Dashboard" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
