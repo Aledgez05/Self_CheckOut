@@ -3,56 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\viewmodels\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\viewmodels\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\viewmodels\\cartviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\viewmodels\\cartviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\selfcheckoutsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\selfcheckoutsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\viewmodels\\reportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\viewmodels\\reportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\viewmodels\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\viewmodels\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\services\\csvimporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\services\\csvimporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|c:\\users\\aledo\\onedrive\\documentos\\self_checkout\\selfco\\selfco\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CEA091E-73FF-40E5-8F19-4A15D1056903}|SelfCO\\SelfCheckoutSystem.csproj|solutionrelative:selfco\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,19 +38,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SelfCheckoutSystem.csproj",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\SelfCheckoutSystem.csproj",
-              "RelativeDocumentMoniker": "SelfCO\\SelfCheckoutSystem.csproj",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\SelfCheckoutSystem.csproj",
-              "RelativeToolTip": "SelfCO\\SelfCheckoutSystem.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-08T07:04:44.736Z"
+              "DocumentIndex": 0,
+              "Title": "CheckoutViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\ViewModels\\CheckoutViewModel.cs",
+              "RelativeDocumentMoniker": "SelfCO\\ViewModels\\CheckoutViewModel.cs",
+              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\ViewModels\\CheckoutViewModel.cs",
+              "RelativeToolTip": "SelfCO\\ViewModels\\CheckoutViewModel.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAmwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T02:08:23.1Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -84,142 +61,75 @@
               "RelativeDocumentMoniker": "SelfCO\\ViewModels\\CartViewModel.cs",
               "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\ViewModels\\CartViewModel.cs",
               "RelativeToolTip": "SelfCO\\ViewModels\\CartViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:01:41.375Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "SelfCO\\Models\\Product.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Product.cs",
-              "RelativeToolTip": "SelfCO\\Models\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:00:09.666Z",
+              "WhenOpened": "2025-10-10T02:07:41.52Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ReportViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\ViewModels\\ReportViewModel.cs",
-              "RelativeDocumentMoniker": "SelfCO\\ViewModels\\ReportViewModel.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\ViewModels\\ReportViewModel.cs",
-              "RelativeToolTip": "SelfCO\\ViewModels\\ReportViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:02:16.122Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CheckoutViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\ViewModels\\CheckoutViewModel.cs",
-              "RelativeDocumentMoniker": "SelfCO\\ViewModels\\CheckoutViewModel.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\ViewModels\\CheckoutViewModel.cs",
-              "RelativeToolTip": "SelfCO\\ViewModels\\CheckoutViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:01:53.424Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\User.cs",
-              "RelativeDocumentMoniker": "SelfCO\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\User.cs",
-              "RelativeToolTip": "SelfCO\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:01:02.234Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Payment.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Payment.cs",
-              "RelativeDocumentMoniker": "SelfCO\\Models\\Payment.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Payment.cs",
-              "RelativeToolTip": "SelfCO\\Models\\Payment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:00:57.257Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "OrderItem.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\OrderItem.cs",
-              "RelativeDocumentMoniker": "SelfCO\\Models\\OrderItem.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\OrderItem.cs",
-              "RelativeToolTip": "SelfCO\\Models\\OrderItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:00:51.979Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Order.cs",
               "RelativeDocumentMoniker": "SelfCO\\Models\\Order.cs",
               "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Order.cs",
               "RelativeToolTip": "SelfCO\\Models\\Order.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAACANeUTMXoiwA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:00:38.409Z"
+              "WhenOpened": "2025-10-10T02:04:56.555Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "SelfCO\\Models\\Category.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Category.cs",
-              "RelativeToolTip": "SelfCO\\Models\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "SelfCO\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "SelfCO\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T07:00:29.093Z"
+              "WhenOpened": "2025-10-10T02:04:04.517Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ReportsController.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Controllers\\ReportsController.cs",
-              "RelativeDocumentMoniker": "SelfCO\\Controllers\\ReportsController.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Controllers\\ReportsController.cs",
-              "RelativeToolTip": "SelfCO\\Controllers\\ReportsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "SelfCO\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Models\\Product.cs",
+              "RelativeToolTip": "SelfCO\\Models\\Product.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAawBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T06:59:51.509Z"
+              "WhenOpened": "2025-10-10T02:00:23.334Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
+              "Title": "CSVImporter.cs",
+              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Services\\CSVImporter.cs",
+              "RelativeDocumentMoniker": "SelfCO\\Services\\CSVImporter.cs",
+              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Services\\CSVImporter.cs",
+              "RelativeToolTip": "SelfCO\\Services\\CSVImporter.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAApwCQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T01:56:29.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "SelfCO\\Controllers\\AdminController.cs",
               "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Controllers\\AdminController.cs",
               "RelativeToolTip": "SelfCO\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T06:59:33.717Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CheckoutController.cs",
-              "DocumentMoniker": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Controllers\\CheckoutController.cs",
-              "RelativeDocumentMoniker": "SelfCO\\Controllers\\CheckoutController.cs",
-              "ToolTip": "C:\\Users\\aledo\\OneDrive\\Documentos\\Self_CheckOut\\SelfCO\\SelfCO\\Controllers\\CheckoutController.cs",
-              "RelativeToolTip": "SelfCO\\Controllers\\CheckoutController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T06:59:14.933Z"
+              "WhenOpened": "2025-10-08T06:59:33.717Z",
+              "EditorCaption": ""
             }
           ]
         }

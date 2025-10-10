@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SelfCheckoutSystem.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="container mt-4">
+    <h2>Products</h2>
+    <a asp-action="CreateProduct" class="btn btn-primary mb-3">Add New Product</a>
+    <hr />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Barcode</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Code</td>
+                    <td>@product.Name</td>
+                    <td>@product.Category.Name</td>
+                    <td>$@product.Price.ToString("F2")</td>
+                    <td>@product.Stock</td>
+                    <td>
+                        <a asp-action="EditProduct" asp-route-id="@product.ProductId" class="btn btn-sm btn-warning">Edit</a>
+                        <form asp-action="DeleteProduct" asp-route-id="@product.ProductId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

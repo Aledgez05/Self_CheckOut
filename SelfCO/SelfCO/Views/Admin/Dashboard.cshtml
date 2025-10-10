@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <h2>Admin Dashboard</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Sales</h5>
+                    <h3>$@ViewBag.TodaySales.ToString("F2")</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Orders</h5>
+                    <h3>@ViewBag.TodayOrders</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <a asp-action="Orders" class="btn btn-lg btn-outline-primary w-100 mb-3">
+                <i class="bi bi-receipt"></i><br />View Orders
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Products" class="btn btn-lg btn-outline-success w-100 mb-3">
+                <i class="bi bi-box"></i><br />Manage Products
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Categories" class="btn btn-lg btn-outline-warning w-100 mb-3">
+                <i class="bi bi-tags"></i><br />Categories
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Reports" class="btn btn-lg btn-outline-info w-100 mb-3">
+                <i class="bi bi-graph-up"></i><br />Reports
+            </a>
+        </div>
+    </div>
+</div>

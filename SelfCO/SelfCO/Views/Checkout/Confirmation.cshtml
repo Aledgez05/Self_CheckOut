@@ -1,0 +1,66 @@
+﻿@model SelfCheckoutSystem.Models.Order
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="container mt-4">
+    <div class="text-center">
+        <div class="alert alert-success">
+            <h2><i class="bi bi-check-circle"></i> Order Completed!</h2>
+            <p>Your order has been processed successfully.</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Order #@Model.OrderId</h4>
+                    <p><strong>Date:</strong> @Model.OrderDate.ToString("yyyy-MM-dd HH:mm")</p>
+                    <p><strong>Payment Method:</strong> @Model.PaymentMethod</p>
+                    <p><strong>Transaction ID:</strong> @Model.Payment.TransactionId</p>
+                    <hr />
+
+                    <h5>Items Purchased:</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>@item.Product.Name</td>
+                                    <td>@item.Quantity</td>
+                                    <td>$@item.UnitPrice.ToString("F2")</td>
+                                    <td>$@item.Subtotal.ToString("F2")</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3" class="text-end">Total:</th>
+                                <th>$@Model.TotalAmount.ToString("F2")</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="text-center mt-4">
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                            Return to Home
+                        </a>
+                        <button onclick="window.print()" class="btn btn-secondary">
+                            Print Receipt
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

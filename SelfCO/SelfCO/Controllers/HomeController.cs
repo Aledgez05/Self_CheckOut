@@ -1,16 +1,15 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SelfCO.Models;
+using SelfCheckoutSystem.Data;
 
-namespace SelfCO.Controllers
+namespace SelfCheckoutSystem.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -18,15 +17,9 @@ namespace SelfCO.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult StartShopping()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return RedirectToAction("Scan", "Checkout");
         }
     }
 }
